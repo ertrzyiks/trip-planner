@@ -1,0 +1,12 @@
+{
+  "name": "trip-planner",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^6.3.8"
+  }
+}
