@@ -1,0 +1,141 @@
+---
+interface Props {
+  title: string;
+  activePage: 'index' | 'overlord';
+}
+
+const { title, activePage } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <p class="sidebar-label">Trip Planner</p>
+        <nav aria-label="Primary">
+          <a
+            href={baseUrl}
+            class:list={['nav-link', activePage === 'index' && 'is-active']}
+            >index</a
+          >
+          <a
+            href={overlordUrl}
+            class:list={['nav-link', activePage === 'overlord' && 'is-active']}
+            >overlord</a
+          >
+        </nav>
+      </aside>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #10243f;
+    --muted: #52657d;
+    --paper: #f5efe2;
+    --panel: rgba(250, 246, 237, 0.92);
+    --accent: #b74d2c;
+    --accent-dark: #7e2e16;
+    --outline: rgba(16, 36, 63, 0.12);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    background:
+      radial-gradient(circle at top left, rgba(183, 77, 44, 0.18), transparent 28%),
+      linear-gradient(135deg, #e7dfcf 0%, #f7f2ea 52%, #e4ecf0 100%);
+    color: var(--ink);
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  .shell {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 1.25rem;
+    min-height: 100vh;
+    padding: 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .sidebar {
+    border: 1px solid var(--outline);
+    border-radius: 24px;
+    background: var(--panel);
+    box-shadow: 0 18px 50px rgba(16, 36, 63, 0.12);
+    padding: 1.25rem 1rem;
+  }
+
+  .sidebar-label {
+    margin: 0 0 1rem;
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  nav {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--outline);
+    border-radius: 999px;
+    padding: 0.5rem 0.8rem;
+    text-transform: lowercase;
+    transition: background-color 150ms ease;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    background-color: rgba(183, 77, 44, 0.12);
+  }
+
+  .is-active {
+    border-color: rgba(183, 77, 44, 0.45);
+    background-color: rgba(183, 77, 44, 0.17);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .shell {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1rem;
+    }
+
+    .sidebar-label {
+      margin: 0;
+    }
+
+    nav {
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+    }
+  }
+</style>
