@@ -372,6 +372,34 @@
     ]
   },
   {
+    "name": "Gatteville-le-Phare",
+    "coordinates": {
+      "lat": 49.6914,
+      "lng": -1.2645
+    },
+    "markerKind": "lighthouse",
+    "tags": [
+      "Cotentin Drive",
+      "US First Army",
+      "VII Corps",
+      "coastal observation"
+    ]
+  },
+  {
+    "name": "Phare de Carteret",
+    "coordinates": {
+      "lat": 49.3667,
+      "lng": -1.7947
+    },
+    "markerKind": "lighthouse",
+    "tags": [
+      "Cotentin Drive",
+      "US First Army",
+      "VII Corps",
+      "coastal observation"
+    ]
+  },
+  {
     "name": "Paris",
     "coordinates": {
       "lat": 48.8566,

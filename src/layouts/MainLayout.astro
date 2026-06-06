@@ -1,12 +1,13 @@
 ---
 interface Props {
   title: string;
-  activePage: 'index' | 'overlord';
+  activePage: 'index' | 'overlord' | 'lighthouses';
 }
 
 const { title, activePage } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
+const lighthousesUrl = `${baseUrl.replace(/\/$/, '')}/lighthouses`;
 ---
 
 <html lang="en">
@@ -29,6 +30,11 @@ const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
             href={overlordUrl}
             class:list={['nav-link', activePage === 'overlord' && 'is-active']}
             >overlord</a
+          >
+          <a
+            href={lighthousesUrl}
+            class:list={['nav-link', activePage === 'lighthouses' && 'is-active']}
+            >lighthouses</a
           >
         </nav>
       </aside>
@@ -95,6 +101,17 @@ const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
     gap: 0.5rem;
   }
 
+  .nav-section-label {
+    margin: 0.75rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--outline);
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
   .nav-link {
     text-decoration: none;
     color: var(--ink);
@@ -136,6 +153,10 @@ const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
     nav {
       grid-auto-flow: column;
       grid-auto-columns: max-content;
+    }
+
+    .nav-section-label {
+      display: none;
     }
   }
 </style>

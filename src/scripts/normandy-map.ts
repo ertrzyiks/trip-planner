@@ -8,6 +8,7 @@ type Place = {
   };
   tags: string[];
   description: string;
+  markerKind?: "lighthouse";
 };
 
 declare global {
@@ -82,6 +83,62 @@ const placeFeatures = places.map((place, index) => ({
     name: place.name,
   },
 }));
+
+const selectPlaceByIndex = (index: number) => {
+  const place = places[index];
+  if (!place) {
+    return;
+  }
+
+  if (selectedPlaceId !== null) {
+    map.setFeatureState(
+      { source: "places", id: selectedPlaceId },
+      { selected: false },
+    );
+  }
+
+  selectedPlaceId = index;
+  map.setFeatureState(
+    { source: "places", id: selectedPlaceId },
+    { selected: true },
+  );
+  renderPlaceDetails(place);
+};
+
+const createLighthouseMarker = (place: Place, index: number) => {
+  const element = document.createElement("button");
+  element.type = "button";
+  element.className = "special-marker special-marker--lighthouse";
+  element.setAttribute("aria-label", `Open ${place.name}`);
+  element.innerHTML = `
+    <svg viewBox="0 0 36 48" aria-hidden="true" focusable="false">
+      <path d="M14 2h8v8H14z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"></path>
+      <path d="M11 10h14l-2 26H13z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"></path>
+      <path d="M13 16h10v4H13z" fill="#b74d2c"></path>
+      <path d="M12 24h12v4H12z" fill="#b74d2c"></path>
+      <path d="M9 36h18l-2 8H11z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"></path>
+      <line x1="11" y1="14" x2="4" y2="19" stroke="#f4d08c" stroke-width="2" stroke-linecap="round"></line>
+      <line x1="25" y1="14" x2="32" y2="19" stroke="#f4d08c" stroke-width="2" stroke-linecap="round"></line>
+    </svg>
+  `;
+
+  element.style.width = "36px";
+  element.style.height = "48px";
+  element.style.padding = "0";
+  element.style.border = "0";
+  element.style.background = "transparent";
+  element.style.cursor = "pointer";
+  element.style.filter = "drop-shadow(0 10px 12px rgba(16, 36, 63, 0.28))";
+
+  element.addEventListener("click", (event) => {
+    event.stopPropagation();
+    selectPlaceByIndex(index);
+  });
+
+  new maplibregl.Marker({ element, anchor: "bottom" })
+    .setLngLat([place.coordinates.lng, place.coordinates.lat])
+    .addTo(map);
+};
 
 const renderPlaceDetails = (place: Place) => {
   if (
@@ -162,6 +219,12 @@ map.on("load", () => {
     },
   });
 
+  places.forEach((place, index) => {
+    if (place.markerKind === "lighthouse") {
+      createLighthouseMarker(place, index);
+    }
+  });
+
   const hoverPopup = new maplibregl.Popup({
     offset: 18,
     closeButton: false,
@@ -203,19 +266,7 @@ map.on("load", () => {
       return;
     }
 
-    if (selectedPlaceId !== null) {
-      map.setFeatureState(
-        { source: "places", id: selectedPlaceId },
-        { selected: false },
-      );
-    }
-
-    selectedPlaceId = feature.id;
-    map.setFeatureState(
-      { source: "places", id: selectedPlaceId },
-      { selected: true },
-    );
-    renderPlaceDetails(places[selectedPlaceId]);
+    selectPlaceByIndex(feature.id);
   });
 
   map.fitBounds(bounds, {
