@@ -11,12 +11,41 @@ type Place = {
   markerKind?: "lighthouse";
 };
 
+type Movement = {
+  from: string;
+  to: string;
+  force: string;
+};
+
 declare global {
   interface Window {
     __TRIP_PLACES__?: Place[];
     __TRIP_PLACE_CONTENT__?: Record<string, string>;
+    __TRIP_MOVEMENTS__?: Movement[];
   }
 }
+
+const FORCE_COLORS: Record<string, string> = {
+  US: "#d97706",
+  British: "#3b82f6",
+  Canadian: "#10b981",
+  German: "#6b7280",
+};
+
+const getBearing = (
+  from: [number, number],
+  to: [number, number],
+): number => {
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const y =
+    Math.sin(toRad(to[0] - from[0])) * Math.cos(toRad(to[1]));
+  const x =
+    Math.cos(toRad(from[1])) * Math.sin(toRad(to[1])) -
+    Math.sin(toRad(from[1])) *
+      Math.cos(toRad(to[1])) *
+      Math.cos(toRad(to[0] - from[0]));
+  return (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
+};
 
 const places = window.__TRIP_PLACES__ ?? [];
 const placeContent = window.__TRIP_PLACE_CONTENT__ ?? {};
@@ -162,6 +191,8 @@ const renderPlaceDetails = (place: Place) => {
 
   panelDefaultNode.classList.add("is-hidden");
   panelSelectedNode.classList.remove("is-hidden");
+  panelSelectedNode.scrollTop = 0;
+  detailBodyNode.scrollTop = 0;
 };
 
 const showOverview = () => {
@@ -188,6 +219,85 @@ for (const place of places) {
 }
 
 map.on("load", () => {
+  const movements = window.__TRIP_MOVEMENTS__;
+  if (movements?.length) {
+    const coordByName = new Map(
+      places.map((p) => [
+        p.name,
+        [p.coordinates.lng, p.coordinates.lat] as [number, number],
+      ]),
+    );
+
+    const lineFeatures: GeoJSON.Feature<GeoJSON.LineString>[] = [];
+    const arrowFeatures: GeoJSON.Feature<GeoJSON.Point>[] = [];
+
+    for (const m of movements) {
+      const from = coordByName.get(m.from);
+      const to = coordByName.get(m.to);
+      if (!from || !to) continue;
+
+      const color = FORCE_COLORS[m.force] ?? "#888";
+      const arrowAt: [number, number] = [
+        from[0] + (to[0] - from[0]) * 0.65,
+        from[1] + (to[1] - from[1]) * 0.65,
+      ];
+
+      lineFeatures.push({
+        type: "Feature",
+        geometry: { type: "LineString", coordinates: [from, to] },
+        properties: { color },
+      });
+
+      arrowFeatures.push({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: arrowAt },
+        properties: { color, bearing: (getBearing(from, to) - 90 + 360) % 360 },
+      });
+    }
+
+    map.addSource("movements", {
+      type: "geojson",
+      data: { type: "FeatureCollection", features: lineFeatures },
+    });
+
+    map.addSource("movement-arrows", {
+      type: "geojson",
+      data: { type: "FeatureCollection", features: arrowFeatures },
+    });
+
+    map.addLayer({
+      id: "movements-line",
+      type: "line",
+      source: "movements",
+      layout: { "line-join": "round", "line-cap": "round" },
+      paint: {
+        "line-color": ["get", "color"],
+        "line-width": 2.5,
+        "line-opacity": 0.75,
+      },
+    });
+
+    map.addLayer({
+      id: "movements-arrows",
+      type: "symbol",
+      source: "movement-arrows",
+      layout: {
+        "text-field": "▶",
+        "text-size": 13,
+        "text-rotate": ["get", "bearing"],
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "map",
+        "text-allow-overlap": true,
+        "text-ignore-placement": true,
+      },
+      paint: {
+        "text-color": ["get", "color"],
+        "text-halo-color": "rgba(255,255,255,0.7)",
+        "text-halo-width": 1.5,
+      },
+    });
+  }
+
   map.addSource("places", {
     type: "geojson",
     data: {

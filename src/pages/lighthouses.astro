@@ -2,7 +2,8 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { getCollection, render } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
-import allPlaces from '../data/places.json';
+import placesData from '../data/places.json';
+const { places: allPlaces } = placesData;
 import { getPlaceDescriptionMap, normalizePlaceKey } from '../utils/place-descriptions';
 
 const pageTitle = 'Lighthouses';
@@ -131,6 +132,8 @@ const lighthousePlacesWithDescriptions = lighthousePlaces.map((place) => ({
         if (bodyEl) bodyEl.innerHTML = content;
         defaultPanel?.classList.add('is-hidden');
         selectedPanel?.classList.remove('is-hidden');
+        if (selectedPanel) selectedPanel.scrollTop = 0;
+        if (bodyEl) bodyEl.scrollTop = 0;
       });
     });
 

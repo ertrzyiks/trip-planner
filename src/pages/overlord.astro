@@ -2,7 +2,8 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { getCollection, render } from 'astro:content';
 import MainLayout from '../layouts/MainLayout.astro';
-import allPlaces from '../data/places.json';
+import placesData from '../data/places.json';
+const { places: allPlaces, movements } = placesData;
 import { getPlaceDescriptionMap, normalizePlaceKey } from '../utils/place-descriptions';
 
 const pageTitle = 'Operation Overlord';
@@ -115,8 +116,9 @@ const overlordPlacesWithDescriptions = overlordPlaces.map((place) => ({
     }
   </section>
 
-  <script define:vars={{ places: overlordPlacesWithDescriptions }}>
+  <script define:vars={{ places: overlordPlacesWithDescriptions, movements }}>
     window.__TRIP_PLACES__ = places;
+    window.__TRIP_MOVEMENTS__ = movements;
   </script>
   <script is:inline>
     const normalizePlaceKey = (value) =>

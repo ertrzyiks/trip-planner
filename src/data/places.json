@@ -1,410 +1,216 @@
-[
-  {
-    "name": "Utah Beach",
-    "coordinates": {
-      "lat": 49.418,
-      "lng": -1.169
+{
+  "places": [
+    {
+      "name": "Utah Beach",
+      "coordinates": { "lat": 49.418, "lng": -1.169 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "US First Army", "VII Corps", "beach"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "US First Army",
-      "VII Corps",
-      "beach"
-    ]
-  },
-  {
-    "name": "Omaha Beach",
-    "coordinates": {
-      "lat": 49.376,
-      "lng": -0.897
+    {
+      "name": "Omaha Beach",
+      "coordinates": { "lat": 49.376, "lng": -0.897 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "US First Army", "V Corps", "beach"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "US First Army",
-      "V Corps",
-      "beach"
-    ]
-  },
-  {
-    "name": "Gold Beach",
-    "coordinates": {
-      "lat": 49.341,
-      "lng": -0.621
+    {
+      "name": "Gold Beach",
+      "coordinates": { "lat": 49.341, "lng": -0.621 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "British Second Army", "XXX Corps", "beach"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "British Second Army",
-      "XXX Corps",
-      "beach"
-    ]
-  },
-  {
-    "name": "Juno Beach",
-    "coordinates": {
-      "lat": 49.337,
-      "lng": -0.457
+    {
+      "name": "Juno Beach",
+      "coordinates": { "lat": 49.337, "lng": -0.457 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "First Canadian Army", "I Corps (UK)", "beach"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "First Canadian Army",
-      "I Corps (UK)",
-      "beach"
-    ]
-  },
-  {
-    "name": "Sword Beach",
-    "coordinates": {
-      "lat": 49.294,
-      "lng": -0.321
+    {
+      "name": "Sword Beach",
+      "coordinates": { "lat": 49.294, "lng": -0.321 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "British Second Army", "I Corps (UK)", "beach"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "British Second Army",
-      "I Corps (UK)",
-      "beach"
-    ]
-  },
-  {
-    "name": "Pegasus Bridge",
-    "coordinates": {
-      "lat": 49.2419,
-      "lng": -0.2746
+    {
+      "name": "Pegasus Bridge",
+      "coordinates": { "lat": 49.2419, "lng": -0.2746 },
+      "tags": ["Operation Overlord", "Operation Tonga", "Airborne Landings", "British 6th Airborne", "bridge"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Tonga",
-      "Airborne Landings",
-      "British 6th Airborne",
-      "bridge"
-    ]
-  },
-  {
-    "name": "Sainte-Mere-Eglise",
-    "coordinates": {
-      "lat": 49.4107,
-      "lng": -1.3164
+    {
+      "name": "Sainte-Mere-Eglise",
+      "coordinates": { "lat": 49.4107, "lng": -1.3164 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Airborne Landings", "US 82nd Airborne", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Airborne Landings",
-      "US 82nd Airborne",
-      "town"
-    ]
-  },
-  {
-    "name": "Merville Gun Battery",
-    "coordinates": {
-      "lat": 49.2793,
-      "lng": -0.1964
+    {
+      "name": "Merville Gun Battery",
+      "coordinates": { "lat": 49.2793, "lng": -0.1964 },
+      "tags": ["Operation Overlord", "Operation Tonga", "Airborne Landings", "British 6th Airborne", "battery"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Tonga",
-      "Airborne Landings",
-      "British 6th Airborne",
-      "battery"
-    ]
-  },
-  {
-    "name": "Pointe du Hoc",
-    "coordinates": {
-      "lat": 49.3908,
-      "lng": -0.9882
+    {
+      "name": "Pointe du Hoc",
+      "coordinates": { "lat": 49.3908, "lng": -0.9882 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "US Rangers", "clifftop"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "US Rangers",
-      "clifftop"
-    ]
-  },
-  {
-    "name": "Cherbourg",
-    "coordinates": {
-      "lat": 49.6337,
-      "lng": -1.6221
+    {
+      "name": "Cherbourg",
+      "coordinates": { "lat": 49.6337, "lng": -1.6221 },
+      "tags": ["Operation Overlord", "Cotentin Drive", "US First Army", "VII Corps", "port"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Cotentin Drive",
-      "US First Army",
-      "VII Corps",
-      "port"
-    ]
-  },
-  {
-    "name": "Arromanches",
-    "coordinates": {
-      "lat": 49.3395,
-      "lng": -0.6217
+    {
+      "name": "Arromanches",
+      "coordinates": { "lat": 49.3395, "lng": -0.6217 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Lodgment", "Mulberry Harbor", "logistics"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Lodgment",
-      "Mulberry Harbor",
-      "logistics"
-    ]
-  },
-  {
-    "name": "Tilly-sur-Seulles",
-    "coordinates": {
-      "lat": 49.1752,
-      "lng": -0.6297
+    {
+      "name": "Tilly-sur-Seulles",
+      "coordinates": { "lat": 49.1752, "lng": -0.6297 },
+      "tags": ["Operation Overlord", "Caen Front", "British Second Army", "Operation Perch", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Caen Front",
-      "British Second Army",
-      "Operation Perch",
-      "town"
-    ]
-  },
-  {
-    "name": "Villers-Bocage",
-    "coordinates": {
-      "lat": 49.079,
-      "lng": -0.658
+    {
+      "name": "Villers-Bocage",
+      "coordinates": { "lat": 49.079, "lng": -0.658 },
+      "tags": ["Operation Overlord", "Caen Front", "British Second Army", "Operation Perch", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Caen Front",
-      "British Second Army",
-      "Operation Perch",
-      "town"
-    ]
-  },
-  {
-    "name": "Hill 112",
-    "coordinates": {
-      "lat": 49.11,
-      "lng": -0.47
+    {
+      "name": "Hill 112",
+      "coordinates": { "lat": 49.11, "lng": -0.47 },
+      "tags": ["Operation Overlord", "Caen Front", "British Second Army", "Operation Epsom", "battlefield"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Caen Front",
-      "British Second Army",
-      "Operation Epsom",
-      "battlefield"
-    ]
-  },
-  {
-    "name": "Caen Memorial Museum",
-    "coordinates": {
-      "lat": 49.1978,
-      "lng": -0.3854
+    {
+      "name": "Caen Memorial Museum",
+      "coordinates": { "lat": 49.1978, "lng": -0.3854 },
+      "tags": ["Operation Overlord", "Caen Front", "Battle for Caen", "museum"]
     },
-    "tags": ["Operation Overlord", "Caen Front", "Battle for Caen", "museum"]
-  },
-  {
-    "name": "Bayeux War Cemetery",
-    "coordinates": {
-      "lat": 49.2797,
-      "lng": -0.7146
+    {
+      "name": "Bayeux War Cemetery",
+      "coordinates": { "lat": 49.2797, "lng": -0.7146 },
+      "tags": ["Operation Overlord", "Lodgment", "Commonwealth", "cemetery"]
     },
-    "tags": ["Operation Overlord", "Lodgment", "Commonwealth", "cemetery"]
-  },
-  {
-    "name": "Saint-Lo",
-    "coordinates": {
-      "lat": 49.1162,
-      "lng": -1.09
+    {
+      "name": "Saint-Lo",
+      "coordinates": { "lat": 49.1162, "lng": -1.09 },
+      "tags": ["Operation Overlord", "Bocage Breakout", "US First Army", "Operation Cobra", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Bocage Breakout",
-      "US First Army",
-      "Operation Cobra",
-      "town"
-    ]
-  },
-  {
-    "name": "Avranches",
-    "coordinates": {
-      "lat": 48.6844,
-      "lng": -1.3561
+    {
+      "name": "Avranches",
+      "coordinates": { "lat": 48.6844, "lng": -1.3561 },
+      "tags": ["Operation Overlord", "Bocage Breakout", "US Third Army", "Operation Cobra", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Bocage Breakout",
-      "US Third Army",
-      "Operation Cobra",
-      "town"
-    ]
-  },
-  {
-    "name": "Mortain",
-    "coordinates": {
-      "lat": 48.6479,
-      "lng": -0.9408
+    {
+      "name": "Mont Saint-Michel",
+      "coordinates": { "lat": 48.6361, "lng": -1.5115 },
+      "tags": ["Operation Overlord", "Bocage Breakout", "US Third Army", "Operation Cobra", "landmark"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Mortain Counterattack",
-      "Operation Luttich",
-      "German counterattack",
-      "town"
-    ]
-  },
-  {
-    "name": "Argentan",
-    "coordinates": {
-      "lat": 48.7444,
-      "lng": -0.0216
+    {
+      "name": "Mortain",
+      "coordinates": { "lat": 48.6479, "lng": -0.9408 },
+      "tags": ["Operation Overlord", "Mortain Counterattack", "Operation Luttich", "German counterattack", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Falaise Encirclement",
-      "US Third Army",
-      "encirclement",
-      "town"
-    ]
-  },
-  {
-    "name": "Falaise",
-    "coordinates": {
-      "lat": 48.8922,
-      "lng": -0.1986
+    {
+      "name": "Argentan",
+      "coordinates": { "lat": 48.7444, "lng": -0.0216 },
+      "tags": ["Operation Overlord", "Falaise Encirclement", "US Third Army", "encirclement", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Falaise Encirclement",
-      "First Canadian Army",
-      "Falaise Pocket",
-      "town"
-    ]
-  },
-  {
-    "name": "Mont Ormel Memorial",
-    "coordinates": {
-      "lat": 48.9294,
-      "lng": -0.1547
+    {
+      "name": "Falaise",
+      "coordinates": { "lat": 48.8922, "lng": -0.1986 },
+      "tags": ["Operation Overlord", "Falaise Encirclement", "First Canadian Army", "Falaise Pocket", "town"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Falaise Encirclement",
-      "1st Polish Armored Division",
-      "Hill 262",
-      "memorial"
-    ]
-  },
-  {
-    "name": "Normandy American Cemetery",
-    "coordinates": {
-      "lat": 49.3592,
-      "lng": -0.8572
+    {
+      "name": "Mont Ormel Memorial",
+      "coordinates": { "lat": 48.9294, "lng": -0.1547 },
+      "tags": ["Operation Overlord", "Falaise Encirclement", "1st Polish Armored Division", "Hill 262", "memorial"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "US",
-      "cemetery",
-      "memorial"
-    ]
-  },
-  {
-    "name": "Utah Beach Landing Museum",
-    "coordinates": {
-      "lat": 49.4187,
-      "lng": -1.1703
+    {
+      "name": "Normandy American Cemetery",
+      "coordinates": { "lat": 49.3592, "lng": -0.8572 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "US", "cemetery", "memorial"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "US",
-      "museum"
-    ]
-  },
-  {
-    "name": "Juno Beach Centre",
-    "coordinates": {
-      "lat": 49.3381,
-      "lng": -0.4609
+    {
+      "name": "Utah Beach Landing Museum",
+      "coordinates": { "lat": 49.4187, "lng": -1.1703 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "US", "museum"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "Canadian",
-      "museum"
-    ]
-  },
-  {
-    "name": "Pegasus Memorial Museum",
-    "coordinates": {
-      "lat": 49.2423,
-      "lng": -0.2739
+    {
+      "name": "Juno Beach Centre",
+      "coordinates": { "lat": 49.3381, "lng": -0.4609 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "Canadian", "museum"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Tonga",
-      "Airborne Landings",
-      "British 6th Airborne",
-      "museum"
-    ]
-  },
-  {
-    "name": "British Normandy Memorial",
-    "coordinates": {
-      "lat": 49.3595,
-      "lng": -0.8543
+    {
+      "name": "Pegasus Memorial Museum",
+      "coordinates": { "lat": 49.2423, "lng": -0.2739 },
+      "tags": ["Operation Overlord", "Operation Tonga", "Airborne Landings", "British 6th Airborne", "museum"]
     },
-    "tags": [
-      "Operation Overlord",
-      "Operation Neptune",
-      "Neptune Beaches",
-      "British",
-      "memorial"
-    ]
-  },
-  {
-    "name": "Gatteville-le-Phare",
-    "coordinates": {
-      "lat": 49.6914,
-      "lng": -1.2645
+    {
+      "name": "British Normandy Memorial",
+      "coordinates": { "lat": 49.3595, "lng": -0.8543 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "British", "memorial"]
     },
-    "markerKind": "lighthouse",
-    "tags": [
-      "Cotentin Drive",
-      "US First Army",
-      "VII Corps",
-      "coastal observation"
-    ]
-  },
-  {
-    "name": "Phare de Carteret",
-    "coordinates": {
-      "lat": 49.3667,
-      "lng": -1.7947
+    {
+      "name": "Gatteville-le-Phare",
+      "coordinates": { "lat": 49.6914, "lng": -1.2645 },
+      "markerKind": "lighthouse",
+      "tags": ["Cotentin Drive", "US First Army", "VII Corps", "coastal observation"]
     },
-    "markerKind": "lighthouse",
-    "tags": [
-      "Cotentin Drive",
-      "US First Army",
-      "VII Corps",
-      "coastal observation"
-    ]
-  },
-  {
-    "name": "Paris",
-    "coordinates": {
-      "lat": 48.8566,
-      "lng": 2.3522
+    {
+      "name": "Phare de Carteret",
+      "coordinates": { "lat": 49.3667, "lng": -1.7947 },
+      "markerKind": "lighthouse",
+      "tags": ["Cotentin Drive", "US First Army", "VII Corps", "coastal observation"]
     },
-    "tags": ["Operation Overlord", "Liberation of Paris", "Epilogue", "city"]
-  }
-]
+    {
+      "name": "Carentan",
+      "coordinates": { "lat": 49.3028, "lng": -1.2422 },
+      "tags": ["Operation Overlord", "Airborne Landings", "US 101st Airborne", "Cotentin Drive", "town"]
+    },
+    {
+      "name": "La Fiere Bridge",
+      "coordinates": { "lat": 49.3867, "lng": -1.3417 },
+      "tags": ["Operation Overlord", "Airborne Landings", "US 82nd Airborne", "bridge"]
+    },
+    {
+      "name": "Longues-sur-Mer Battery",
+      "coordinates": { "lat": 49.3432, "lng": -0.687 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "Atlantic Wall", "battery"]
+    },
+    {
+      "name": "Port-en-Bessin",
+      "coordinates": { "lat": 49.3471, "lng": -0.7576 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "British Second Army", "Royal Marines", "port"]
+    },
+    {
+      "name": "Douvres-la-Delivrande",
+      "coordinates": { "lat": 49.2936, "lng": -0.3761 },
+      "tags": ["Operation Overlord", "Operation Neptune", "Neptune Beaches", "British", "radar", "fortification"]
+    },
+    {
+      "name": "Isigny-sur-Mer",
+      "coordinates": { "lat": 49.3196, "lng": -1.1033 },
+      "tags": ["Operation Overlord", "Neptune Beaches", "US First Army", "V Corps", "town"]
+    },
+    {
+      "name": "Paris",
+      "coordinates": { "lat": 48.8566, "lng": 2.3522 },
+      "tags": ["Operation Overlord", "Liberation of Paris", "Epilogue", "city"]
+    }
+  ],
+  "movements": [
+    { "from": "Omaha Beach", "to": "Pointe du Hoc", "force": "US" },
+    { "from": "Omaha Beach", "to": "Port-en-Bessin", "force": "US" },
+    { "from": "Omaha Beach", "to": "Isigny-sur-Mer", "force": "US" },
+    { "from": "Isigny-sur-Mer", "to": "Saint-Lo", "force": "US" },
+    { "from": "Utah Beach", "to": "Sainte-Mere-Eglise", "force": "US" },
+    { "from": "Utah Beach", "to": "Carentan", "force": "US" },
+    { "from": "Sainte-Mere-Eglise", "to": "La Fiere Bridge", "force": "US" },
+    { "from": "Sainte-Mere-Eglise", "to": "Cherbourg", "force": "US" },
+    { "from": "Carentan", "to": "Saint-Lo", "force": "US" },
+    { "from": "Saint-Lo", "to": "Avranches", "force": "US" },
+    { "from": "Avranches", "to": "Argentan", "force": "US" },
+    { "from": "Argentan", "to": "Mont Ormel Memorial", "force": "US" },
+    { "from": "Gold Beach", "to": "Bayeux War Cemetery", "force": "British" },
+    { "from": "Gold Beach", "to": "Longues-sur-Mer Battery", "force": "British" },
+    { "from": "Gold Beach", "to": "Port-en-Bessin", "force": "British" },
+    { "from": "Bayeux War Cemetery", "to": "Tilly-sur-Seulles", "force": "British" },
+    { "from": "Tilly-sur-Seulles", "to": "Villers-Bocage", "force": "British" },
+    { "from": "Tilly-sur-Seulles", "to": "Hill 112", "force": "British" },
+    { "from": "Sword Beach", "to": "Pegasus Bridge", "force": "British" },
+    { "from": "Juno Beach", "to": "Douvres-la-Delivrande", "force": "Canadian" },
+    { "from": "Juno Beach", "to": "Caen Memorial Museum", "force": "Canadian" },
+    { "from": "Caen Memorial Museum", "to": "Falaise", "force": "Canadian" },
+    { "from": "Falaise", "to": "Mont Ormel Memorial", "force": "Canadian" }
+  ]
+}
