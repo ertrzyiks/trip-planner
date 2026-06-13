@@ -6,7 +6,7 @@ const places = defineCollection({
   schema: z.object({
     name: z.string(),
     description: z.string(),
-    captureDate: z.string(),
+    captureDate: z.string().optional(),
   }),
 });
 

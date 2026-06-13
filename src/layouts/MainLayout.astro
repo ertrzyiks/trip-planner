@@ -1,13 +1,14 @@
 ---
 interface Props {
   title: string;
-  activePage: 'index' | 'overlord' | 'lighthouses';
+  activePage: 'index' | 'overlord' | 'lighthouses' | 'nature';
 }
 
 const { title, activePage } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 const overlordUrl = `${baseUrl.replace(/\/$/, '')}/overlord`;
 const lighthousesUrl = `${baseUrl.replace(/\/$/, '')}/lighthouses`;
+const natureUrl = `${baseUrl.replace(/\/$/, '')}/nature`;
 ---
 
 <html lang="en">
@@ -35,6 +36,11 @@ const lighthousesUrl = `${baseUrl.replace(/\/$/, '')}/lighthouses`;
             href={lighthousesUrl}
             class:list={['nav-link', activePage === 'lighthouses' && 'is-active']}
             >lighthouses</a
+          >
+          <a
+            href={natureUrl}
+            class:list={['nav-link', activePage === 'nature' && 'is-active']}
+            >nature</a
           >
         </nav>
       </aside>

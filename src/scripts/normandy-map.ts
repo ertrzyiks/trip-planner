@@ -47,6 +47,9 @@ const getBearing = (
   return (Math.atan2(y, x) * (180 / Math.PI) + 360) % 360;
 };
 
+const markerColor: string =
+  (window as any).__TRIP_MARKER_COLOR__ ?? "#b74d2c";
+
 const places = window.__TRIP_PLACES__ ?? [];
 const placeContent = window.__TRIP_PLACE_CONTENT__ ?? {};
 const mapNode = document.getElementById("map");
@@ -110,6 +113,7 @@ const placeFeatures = places.map((place, index) => ({
   },
   properties: {
     name: place.name,
+    color: place.tags.includes("nature") ? "#16a34a" : markerColor,
   },
 }));
 
@@ -321,7 +325,7 @@ map.on("load", () => {
         "case",
         ["boolean", ["feature-state", "selected"], false],
         "#0f6e8c",
-        "#b74d2c",
+        ["get", "color"],
       ],
       "circle-stroke-width": 3,
       "circle-stroke-color": "#fff4e8",

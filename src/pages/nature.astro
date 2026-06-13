@@ -1,0 +1,325 @@
+---
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { getCollection, render } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import placesData from '../data/places.json';
+const { places: allPlaces } = placesData;
+import { getPlaceDescriptionMap, normalizePlaceKey } from '../utils/place-descriptions';
+
+const pageTitle = 'Nature';
+
+const naturePlaces = allPlaces.filter((place) => place.tags.includes('nature'));
+
+const placeDescriptions = getPlaceDescriptionMap();
+const placeEntries = await getCollection('places');
+const natureSlugs = new Set(
+  naturePlaces.map((p) =>
+    p.name
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[^\p{L}\p{N}]+/gu, '-')
+      .replace(/^-|-$/g, '')
+  )
+);
+const renderedPlaceContent = await Promise.all(
+  placeEntries
+    .filter((entry) => natureSlugs.has(entry.id.replace(/\.md$/, '')))
+    .map(async (entry) => {
+      const { Content } = await render(entry);
+      return {
+        name: entry.data.name,
+        slug: entry.id,
+        Content,
+      };
+    }),
+);
+
+const naturePlacesWithDescriptions = naturePlaces.map((place) => ({
+  ...place,
+  description:
+    placeDescriptions.get(normalizePlaceKey(place.name)) ??
+    'No description available.',
+}));
+---
+
+<MainLayout title={pageTitle} activePage="nature">
+  <section class="layout">
+    <section class="panel">
+      <div id="panel-default">
+        <p class="eyebrow">Normandy Region</p>
+        <h1>{pageTitle}</h1>
+        <p class="intro">
+          Coastal cliffs, tidal islands, ancient dunes, and flooded marshlands
+          that define the natural landscape of the Cotentin Peninsula and the
+          Normandy coast.
+        </p>
+
+        <ul class="place-list">
+          {
+            naturePlacesWithDescriptions.map((place) => (
+              <li class="place-item" data-place-name={place.name}>
+                <button type="button" class="place-button">
+                  <span class="place-name">{place.name}</span>
+                  <span class="place-desc">{place.description}</span>
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div id="panel-selected" class="panel-selected is-hidden" aria-live="polite">
+        <p class="eyebrow">Selected Place</p>
+        <h2 id="selected-place-name">Place name</h2>
+        <div id="selected-place-body" class="place-body"></div>
+        <button id="show-overview" type="button" class="overview-button">
+          Back To Nature
+        </button>
+      </div>
+    </section>
+
+    <section class="map-shell">
+      <div id="map" class="map"></div>
+    </section>
+  </section>
+
+  <section id="place-content-cache" class="content-cache" aria-hidden="true">
+    {
+      renderedPlaceContent.map((entry) => (
+        <article data-place-content={entry.name} data-place-slug={entry.slug}>
+          <entry.Content />
+        </article>
+      ))
+    }
+  </section>
+
+  <script define:vars={{ places: naturePlacesWithDescriptions }}>
+    window.__TRIP_PLACES__ = places;
+    window.__TRIP_MARKER_COLOR__ = '#16a34a';
+  </script>
+  <script is:inline>
+    const normalizePlaceKey = (value) =>
+      value
+        .toLowerCase()
+        .normalize('NFKD')
+        .replace(/[^\p{L}\p{N}]+/gu, ' ')
+        .trim()
+        .replace(/\s+/g, ' ');
+
+    const placeContentMap = {};
+    const contentNodes = document.querySelectorAll('#place-content-cache [data-place-content]');
+    contentNodes.forEach((node) => {
+      const name = node.getAttribute('data-place-content') || '';
+      const slug = node.getAttribute('data-place-slug') || '';
+      const html = node.innerHTML.trim();
+      if (name && html) placeContentMap[normalizePlaceKey(name)] = html;
+      if (slug && html) placeContentMap[normalizePlaceKey(slug.replace(/[-_]/g, ' '))] = html;
+    });
+    window.__TRIP_PLACE_CONTENT__ = placeContentMap;
+
+    document.querySelectorAll('.place-button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('[data-place-name]');
+        const name = item?.getAttribute('data-place-name') || '';
+        const key = normalizePlaceKey(name);
+        const content = window.__TRIP_PLACE_CONTENT__?.[key] ?? '';
+
+        const nameEl = document.getElementById('selected-place-name');
+        const bodyEl = document.getElementById('selected-place-body');
+        const defaultPanel = document.getElementById('panel-default');
+        const selectedPanel = document.getElementById('panel-selected');
+
+        if (nameEl) nameEl.textContent = name;
+        if (bodyEl) bodyEl.innerHTML = content;
+        defaultPanel?.classList.add('is-hidden');
+        selectedPanel?.classList.remove('is-hidden');
+        if (selectedPanel) selectedPanel.scrollTop = 0;
+        if (bodyEl) bodyEl.scrollTop = 0;
+      });
+    });
+
+    document.getElementById('show-overview')?.addEventListener('click', () => {
+      document.getElementById('panel-default')?.classList.remove('is-hidden');
+      document.getElementById('panel-selected')?.classList.add('is-hidden');
+    });
+  </script>
+  <script>
+    import '../scripts/normandy-map.ts';
+  </script>
+</MainLayout>
+
+<style>
+  .layout {
+    --accent: #16a34a;
+    --accent-dark: #15803d;
+    display: grid;
+    grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .panel,
+  .map-shell {
+    border: 1px solid var(--outline);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(16, 36, 63, 0.12);
+  }
+
+  .panel {
+    padding: 1.5rem;
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+  }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.1rem, 4.4vw, 4rem);
+    line-height: 0.95;
+  }
+
+  .intro {
+    margin: 1rem 0 1.25rem;
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.55;
+  }
+
+  .place-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .place-button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 1px solid var(--outline);
+    border-radius: 14px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    display: grid;
+    gap: 0.25rem;
+    transition: background-color 150ms ease;
+  }
+
+  .place-button:hover,
+  .place-button:focus-visible {
+    background-color: rgba(22, 163, 74, 0.08);
+  }
+
+  .place-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .place-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .panel-selected {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 100%;
+  }
+
+  .panel-selected h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  }
+
+  .place-body {
+    overflow: auto;
+    max-height: clamp(280px, 58vh, 68vh);
+    padding-right: 0.35rem;
+  }
+
+  .place-body p {
+    margin: 0.35rem 0;
+    color: var(--muted);
+    line-height: 1.4;
+    font-size: 0.92rem;
+  }
+
+  .overview-button {
+    margin-top: auto;
+    border: 1px solid rgba(22, 163, 74, 0.45);
+    background: rgba(22, 163, 74, 0.12);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 0.55rem 0.85rem;
+    cursor: pointer;
+    width: fit-content;
+    font-family: inherit;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  .content-cache {
+    display: none;
+  }
+
+  .map-shell {
+    position: relative;
+    min-height: 70vh;
+    background: #d0e8d4;
+  }
+
+  .map {
+    position: absolute;
+    inset: 0;
+  }
+
+  :global(.maplibregl-popup-content) {
+    border-radius: 18px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 12px 36px rgba(16, 36, 63, 0.18);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  :global(.popup) {
+    padding: 0.95rem 1rem;
+    min-width: 220px;
+    background: #f0faf2;
+  }
+
+  :global(.popup h2) {
+    margin: 0 0 0.35rem;
+    font-size: 1.1rem;
+  }
+
+  :global(.popup p) {
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 900px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .map-shell {
+      min-height: 60vh;
+    }
+  }
+</style>
